@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	cors "github.com/rs/cors/wrapper/gin"
 )
 
 // album represents data about a record album.
@@ -24,6 +25,7 @@ var albums = []album{
 
 func main() {
     router := gin.Default()
+    router.Use(cors.Default())
     router.GET("/albums", getAlbums)
     router.GET("/albums/:id", getAlbumByID)
     router.POST("/albums", postAlbums)
